@@ -103,7 +103,37 @@ fn array_type() {
     println!("{}", arr_len);
 
     let arr2: [[i32; 3]; 2] = [[1, 2, 3], [3, 2, 1]];
-    println!("{}",arr2[0][1])
+    println!("{}",arr2[0][1]);
+
+    arr.iter().enumerate().for_each(|(index,&value)| {
+        println!("Item ke {} : {}",index,value);
+    });
+
+    struct Book{
+        title : String,
+        desc : String,
+        price : i64,
+    }
+
+    impl Book{
+        fn new(title : &str, desc : &str, price : i64)->Self{
+            Book {
+                title : title.to_string(),
+                desc : desc.to_string(),
+                price : price
+            }
+        }
+
+        fn display(&self, id : i64){
+            println!("ID : {}, Title : {}, Desc : {}, Price : {}", id ,self.title, self.desc, self.price);
+        }
+    }
+ 
+    let my_books : [Book;2] = [Book::new("Rust Programming", "Desc rust", 10000),Book::new("Rust Programming", "Desc rust", 10000)];
+    my_books.iter().enumerate().for_each(|(index, item)|{
+        item.display(index as i64);
+    });
+
 }
 
 
